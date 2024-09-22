@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html lang="en">
 <head>
@@ -53,37 +54,44 @@
                    <!-- DataTales Example -->
                    <div class="card shadow mb-4">
                        <div class="card-body">
-						<form action="/employee/add" method="POST">
-							<div class="form-group row">
-							    <div class="col-sm-6 mb-3 mb-sm-0">
-									<label name="employeeType">Employee Type: </label>
-									<input name="employeeType" class="form-control form-control-user"/>
-								</div>								
-								<div class="col-sm-6">
-									<label name="name">Name: </label>
-									<input name="name" class="form-control form-control-user"/>
+							<form:form action="/employee/add" method="POST" modelAttribute="employee">
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<form:label path="employeeType">Employee Type: </form:label>														
+										<form:select class="form-control" path="employeeType">
+											<option value="Employee">Employee</option>
+											<option value="Department Manager"}>Department Manager</option>
+											<option value="Director">Director</option>
+										</form:select>
+									</div>
+									<div class="col-sm-6">
+										<form:label path="name">Name: </form:label>
+										<form:input path="name" class="form-control form-control-user"/>
+										<form:errors path="name" cssClass="invalid-feedback d-block" />
+									</div>
 								</div>
-							</div>
-							<div class="form-group row">
-								<div class="col-sm-6 mb-3 mb-sm-0">
-								<label name="phone">Phone: </label>
-								<input name="phone" class="form-control form-control-user"/>
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<form:label path="phone">Phone: </form:label>
+										<form:input path="phone" class="form-control form-control-user" />
+										<form:errors path="phone" cssClass="invalid-feedback d-block" />
+									</div>
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<form:label path="workDay">Work days: </form:label>
+										<form:input path="workDay" class="form-control form-control-user" />
+										<form:errors path="workDay" cssClass="invalid-feedback d-block" />
+									</div>
 								</div>
-								<div class="col-sm-6 mb-3 mb-sm-0">
-								<label name="workDay">Work days: </label>
-								<input name="workDay" class="form-control form-control-user"/>
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<form:label path="department">Department: </form:label>
+										<form:input path="department" class="form-control form-control-user" />
+									</div>
+									<div class="d-flex align-items-end">
+										<button id="employeeBtn" class="btn btn-primary btn-block" type="submit">Add Employee</button>
+									</div>
 								</div>
-							</div>
-							<div class="form-group row">
-								<div class="col-sm-6 mb-3 mb-sm-0">
-								<label name="department">Department: </label>
-								<input name="department" class="form-control form-control-user"/>
-								</div>
-								<div class="d-flex align-items-end">
-								<button class="btn btn-primary btn-block" type="button">Add Employee</button>
-								</div>
-							</div>
-							</form>	
+							</form:form>
                        </div>
                    </div>
 
@@ -119,5 +127,7 @@
 
 <!-- Custom JS -->
 <script src="${pageContext.request.contextPath}/resources/js/custom/table.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/custom/employee/employee.js"></script>
+
 </body>
 </html>

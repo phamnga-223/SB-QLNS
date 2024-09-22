@@ -2,10 +2,14 @@ package com.qlns.model;
 
 import java.util.List;
 
+import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table
@@ -15,23 +19,30 @@ public class Employee {
 	public static final int SALARY_P_DAY_MANAGER = 200;
 	public static final int SALARY_P_DAY_DIRECTOR = 300;
 
-	public static final String TYPE_EMPLOYEE = "0";
-	public static final String TYPE_DEPARTMENT_MANAGER = "1";
-	public static final String TYPE_DIRECTOR = "2";
+	public static final String TYPE_EMPLOYEE = "Employee";
+	public static final String TYPE_DEPARTMENT_MANAGER = "Department Manager";
+	public static final String TYPE_DIRECTOR = "Director";
 		
 	@Id
 	@Column
 	private int id;
 	@Column
+	@NotBlank(message = "Name is mandatory")
 	private String name;
 	@Column
 	private String phone;
 	@Column
+	@Min(value = 0, message = "Work Day is greater than 0")
 	private double workDay;
 	@Column
+	@Min(value = 0, message = "Salary Per Day is greater than 0")
 	private int salaryPerDay;
 	@Column
+	@Nullable
 	private String department;
+	@Column
+	@Nullable
+	private String employeeType;
 	
 	public Employee() {
 		this.salaryPerDay = SALARY_P_DAY_EMPLOYEE;
@@ -83,6 +94,14 @@ public class Employee {
 
 	public void setWorkDay(double workDay) {
 		this.workDay = workDay;
+	}
+
+	public String getEmployeeType() {
+		return employeeType;
+	}
+
+	public void setEmployeeType(String employeeType) {
+		this.employeeType = employeeType;
 	}
 
 	public long calculateSalary() {

@@ -71,20 +71,22 @@
 																	<th>Work Day</th>
 																	<th>Salary Per Day</th>
 																	<th>Department</th>
+																	<th>Employee Type</th>
 																	<th>Stock</th>
-																	<th>Action</th>
+																	<th class="text-center">Action</th>
 					   	                                       </tr>
 					   	                                   </thead>
 					   	                                   <tfoot>
 					   	                                       <tr>
 																<th>Id</td>
-																																	<th>Name</th>
-																																	<th>Phone</th>
-																																	<th>Work Day</th>
-																																	<th>Salary Per Day</th>
-																																	<th>Department</th>
-																																	<th>Stock</th>
-																																	<th>Action</th>
+																<th>Name</th>
+																<th>Phone</th>
+																<th>Work Day</th>
+																<th>Salary Per Day</th>
+																<th>Department</th>
+																<th>Employee Type</th>
+																<th>Stock</th>
+																<th class="text-center">Action</th>
 					   	                                       </tr>
 					   	                                   </tfoot>
 					   									   <tbody>
@@ -103,6 +105,7 @@
 																					<td>${e.getWorkDay()}</td>
 																					<td>${e.getSalaryPerDay()}</td>
 																					<td>${e.getDepartment()}</td>
+																					<td>${e.getEmployeeType()}</td>
 																					<td>
 																						<c:choose>
 																							<c:when test="${e.getClass().name == 'com.example.demo.entity.Director'}">
@@ -110,7 +113,19 @@
 																							</c:when>
 																						</c:choose>
 																					</td>
-																					<td><a href="/employee/update?id=${e.getId()}">Update Employee</a></td>
+																					<td class="d-flex justify-content-center">
+																						<a href="/employee/update?id=${e.getId()}" class="mr-1">
+																							<button type="button" class="btn btn-primary">
+																								<i class="fas fa-edit"></i>
+																							</button>
+																						</a>
+																						<form id="deleteForm">
+																							<input name="id" value="${e.getId()}" hidden/>
+																							<button id="deleteEmployee" type="button" value="${e.getId()}" class="btn btn-danger">
+																								<i class="fas fa-trash"></i>
+																							</button>
+																						</form>
+																					</td>
 					   															</tr>
 					   														</c:forEach>
 					   											</c:otherwise>	
@@ -150,5 +165,6 @@
 		
 		<!-- Custom JS -->
 		<script src="${pageContext.request.contextPath}/resources/js/custom/table.js"></script>	
+		<script src="${pageContext.request.contextPath}/resources/js/custom/employee/employee.js"></script>
 </body>
 </html>
