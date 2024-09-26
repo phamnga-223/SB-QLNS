@@ -14,7 +14,7 @@
 
 	<!-- Nav Item - Dashboard -->
 	<li class="nav-item">
-		<a class="nav-link" href="/">
+		<a class="nav-link" href="/" ${active == 'welcome' ? 'active' : ''}>
 			<i class="fas fa-fw fa-tachometer-alt"></i>
 			<span>Dashboard</span></a>
 	</li>
@@ -27,15 +27,15 @@
 		Heading
 	</div>
 
-	<!-- Nav Item - Charts -->
-	<li class="nav-item">
+	<!-- Nav Item - Employee -->
+	<li class="nav-item ${active == 'employee' ? 'active' : ''}">
 		<a class="nav-link" href="/employee">
 			<i class="fas fa-fw fa-chart-area"></i>
 			<span>Employee</span></a>
 	</li>
 
 	<!-- Nav Item - Company -->
-	<li class="nav-item active">
+	<li class="nav-item ${active == 'company' ? 'active' : ''}">
 		<a class="nav-link" href="/company">
 			<i class="fas fa-fw fa-table"></i>
 			<span>Company</span></a>

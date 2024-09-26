@@ -31,6 +31,7 @@ public class EmployeeController {
 		List<Employee> listEmployee = employeeService.listEmployee();
 		
 		model.addAttribute("listEmployee", listEmployee);
+		model.addAttribute("active", "employee");
 		
 		return "employee/employee";
 	}
@@ -39,13 +40,17 @@ public class EmployeeController {
 	public String addEmployee(Model model) {
 		
 		model.addAttribute("employee", new Employee());
+		model.addAttribute("active", "employee");
+
 		return "employee/addEmployee";
 	}
 	
 	@RequestMapping(value = "/employee/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public String addEmployee(Model model, @ModelAttribute("employee") @Valid Employee employee, BindingResult bindingResult) {
-		if (bindingResult.hasErrors())
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("active", "employee");
 			return "employee/addEmployee";
+		}
 		
 		String result = employeeService.addEmployee(employee);
 		
@@ -57,10 +62,13 @@ public class EmployeeController {
 	@RequestMapping(value = "/employee/update", method = RequestMethod.GET)
 	public String updateEmployee(Model model, @RequestParam("id") int id) {
 		Employee e = employeeService.findEmployee(id);
-		if (e == null)
+		if (e == null) {
+			model.addAttribute("active", "employee");
 			return "employee/employee";	
+		}
 		
 		model.addAttribute("e", e);
+		model.addAttribute("active", "employee");
 		
 		return "employee/updateEmployee";
 	}
@@ -68,8 +76,10 @@ public class EmployeeController {
 	@RequestMapping(value = "/employee/update", method = RequestMethod.POST)
 	public String updateEmployee(Model model, @RequestParam("id") int id, @ModelAttribute("e") @Valid Employee employee,
 			BindingResult bindingResult) {
-		if (bindingResult.hasErrors())
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("active", "employee");
 			return "employee/updateEmployee";
+		}
 		
 		String result = employeeService.updateEmployee(id, employee);
 		model.addAttribute("result", result);

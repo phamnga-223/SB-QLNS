@@ -21,6 +21,7 @@ public class CompanyController {
 	public String company(Model model) {						
 		List<Company> listCompany = companyService.listCompany();
 		model.addAttribute("listCompany", listCompany);
+		model.addAttribute("active", "company");
 		
 		return "company/company";
 	}
