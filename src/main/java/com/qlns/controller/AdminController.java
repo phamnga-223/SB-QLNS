@@ -7,8 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.qlns.model.Admin;
 import com.qlns.service.AdminService;
@@ -28,7 +26,7 @@ public class AdminController {
 		return "common/pages/login";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/checkLogin", method = RequestMethod.POST)
 	public String login(Model model, @ModelAttribute("admin") @Valid Admin admin,
 			BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
