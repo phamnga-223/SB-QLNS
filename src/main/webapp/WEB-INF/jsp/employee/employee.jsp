@@ -121,9 +121,9 @@
 																								<i class="fas fa-edit"></i>
 																							</button>
 																						</a>
-																						<form id="salaryForm">
+																						<form id="salaryForm" class="mr-1">
 																							<button id="calculateForm" type="button" value="${ e.getId() }" class="btn btn-success">
-																								<i class="fas fa-edit"></i>
+																								<i class="fas fa-file-export"></i>
 																							</button>
 																						</form>
 																						<form id="deleteForm">

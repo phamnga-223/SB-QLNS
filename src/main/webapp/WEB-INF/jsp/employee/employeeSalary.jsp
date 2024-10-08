@@ -9,7 +9,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="salaryModalLabel">Calculate Salary</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <button id="cancelCalculateX" class="close" type="button" data-dismiss="modal" aria-label="Close" onclick="hideSalaryModal()">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
@@ -38,18 +38,18 @@
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">
                                 <form:label path="allowance">Allowance </form:label>
-                                <form:input path="allowance" class="form-control form-control-user" type="number" />
+                                <form:input path="allowance" class="form-control form-control-user" type="number" readonly="true" />
                                 <form:errors path="allowance" cssClass="invalid-feedback d-block" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <form:label path="insurance">Insurance </form:label>
-                            <form:input path="insurance" class="form-control form-control-user" />
+                            <form:input path="insurance" class="form-control form-control-user" readonly="true" />
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">
                                 <form:label path="salary">Salary </form:label>
-                                <form:input path="salary" class="form-control form-control-user" type="number" />
+                                <form:input path="salary" class="form-control form-control-user" type="number" readonly="true" />
                                 <form:errors path="salary" cssClass="invalid-feedback d-block" />
                         </div>
                     </div>
@@ -66,10 +66,10 @@
                 </form:form>
             </div>
 	        <div class="modal-footer">
-				<button id="calculateSalary" class="btn btn-primary" type="submit">Calculate</button>
-				<button id="saveSalary" class="btn btn-primary" type="button" disabled>Save</button>
-				<button id="exportSalary" class="btn btn-primary" type="button" disabled>Export</button>
-	            <button id="cancelCalculate" class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+				<button id="calculateSalary" class="btn btn-success" type="submit">Calculate</button>
+				<button id="saveSalary" class="btn btn-success" type="button" disabled>Save</button>
+				<button id="exportSalary" class="btn btn-success" type="button" disabled>Export</button>
+	            <button id="cancelCalculate" class="btn btn-secondary" type="button" data-dismiss="modal" onclick="hideSalaryModal()">Cancel</button>
 	        </div>
 		</div>
     </div>

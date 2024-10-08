@@ -51,8 +51,15 @@ public class EmployeeSalaryService {
 		int employeeId = entity.getEmployeeId();
 		Employee employee = employeeService.findEmployee(employeeId);
 		
-		if (employee == null) {
+		if (employee == null || entity.getMonth() <= 0) {
 			return null;
+		}
+		
+		EmployeeSalary employeeSalary = repository.findByEmployeeIdAndMonth(employeeId, entity.getMonth());
+		if (employeeSalary == null && entity.getId() > 0) {
+			entity.setId(0);
+		} else if (employeeSalary != null && entity.getId() == 0) {
+			entity.setId(employeeSalary.getId());
 		}
 		
 		int salary = calculateBaseSalary(employee.getSalaryPerDay(), entity.getWorkDay());
@@ -73,8 +80,11 @@ public class EmployeeSalaryService {
 	public EmployeeSalary saveSalary(EmployeeSalary entity) {		
 		try {
 			EmployeeSalary employeeSalary = repository.findByEmployeeIdAndMonth(entity.getEmployeeId(), entity.getMonth());
-			if (employeeSalary != null) {
-				entity = employeeSalary;
+			
+			if (employeeSalary == null && entity.getId() > 0) {
+				entity.setId(0);
+			} else if (employeeSalary != null && entity.getId() == 0) {
+				entity.setId(employeeSalary.getId());
 			}
 			
 			repository.save(entity);
@@ -95,7 +105,7 @@ public class EmployeeSalaryService {
 		
 		try {
 			if (!repository.existsById(id)) {
-				return result;
+				return "UNSUCCESS";
 			}
 			EmployeeSalary entity = repository.findById(id).get();
 			FileInputStream templateSalary = new FileInputStream(new File(TEMPLATE_SALARY));
@@ -181,10 +191,13 @@ public class EmployeeSalaryService {
 			workbook.write(fileOut);
 			
 			fileOut.close();
-			workbook.close();
+			workbook.close();			
+			result = "SUCCESS";
 		} catch (Exception ex) {
 			System.out.println("Error!");
 			ex.printStackTrace();
+			
+			result = "UNSUCCESS";
 		}
 		
 		return result;

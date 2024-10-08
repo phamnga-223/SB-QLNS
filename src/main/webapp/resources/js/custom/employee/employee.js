@@ -10,7 +10,7 @@ function openSalaryModal(entity) {
 	$('#salaryModal #note').val(entity.note);
 
 
-	$('#salaryModal').removeClass('fade');
+	$('#salaryModal').modal('show');
 	$('#salaryModal').show();
 }
 
@@ -130,6 +130,7 @@ $('button#exportSalary').on("click", function() {
 		data: { id: idInput },
 		success: function (response) {
 			console.log(response);
+			$('#salaryModal').modal('hide');
 		},
 		error: function(response) {
 			console.log(response);
@@ -143,4 +144,8 @@ function disabledBtn(itemSelected) {
 
 function enabledBtn(itemSelected) {
 	$(itemSelected).attr('disabled', false);
+}
+
+function hideSalaryModal() {
+	$('#salaryModal').modal('hide');
 }
