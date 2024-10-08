@@ -1,6 +1,7 @@
 package com.qlns.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.qlns.model.Employee;
+import com.qlns.model.EmployeeSalary;
 import com.qlns.service.EmployeeService;
 
 import jakarta.validation.Valid;
@@ -27,11 +30,15 @@ public class EmployeeController {
 	EmployeeService employeeService;
 	
 	@RequestMapping(value = "/employee", method = RequestMethod.GET)
-	public String employee(Model model) {
+	public String employee(Model model, @RequestParam(name = "result", required = false) String ... result) {
 		List<Employee> listEmployee = employeeService.listEmployee();
-		
+				
 		model.addAttribute("listEmployee", listEmployee);
 		model.addAttribute("active", "employee");
+		model.addAttribute("employeeSalary", new EmployeeSalary());
+		if (result != null && !result.equals("") && result.length > 0) {
+			model.addAttribute("result", result[0]);
+		}
 		
 		return "employee/employee";
 	}
@@ -56,7 +63,7 @@ public class EmployeeController {
 		
 		model.addAttribute("result", result);
 		
-		return employee(model);		
+		return employee(model, result);		
 	}
 	
 	@RequestMapping(value = "/employee/update", method = RequestMethod.GET)
@@ -91,8 +98,7 @@ public class EmployeeController {
 	@RequestMapping(value = "/employee/delete", method = RequestMethod.DELETE)
 	public String deleteEmployee(Model model, @RequestParam("id") int id) {
 		String result = employeeService.deleteEmployee(id);
-		model.addAttribute("result", result);
-
+		
 		return result;
 	}
 }

@@ -14,9 +14,9 @@ import jakarta.validation.constraints.NotBlank;
 @Table
 public class Employee {
 	
-	public static final int SALARY_P_DAY_EMPLOYEE = 100;
-	public static final int SALARY_P_DAY_MANAGER = 200;
-	public static final int SALARY_P_DAY_DIRECTOR = 300;
+	public static final int SALARY_P_DAY_EMPLOYEE = 100000;
+	public static final int SALARY_P_DAY_MANAGER = 200000;
+	public static final int SALARY_P_DAY_DIRECTOR = 300000;
 
 	public static final String TYPE_EMPLOYEE = "Employee";
 	public static final String TYPE_DEPARTMENT_MANAGER = "Department Manager";

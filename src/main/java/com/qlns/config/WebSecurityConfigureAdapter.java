@@ -26,6 +26,15 @@ public class WebSecurityConfigureAdapter {
 				.defaultSuccessUrl("/").permitAll()
 		);
 		
+		http.logout(config -> config
+				.logoutUrl("/logout")
+				.logoutSuccessUrl("/login")
+				.invalidateHttpSession(true)
+				.deleteCookies("JSESSIONID")
+		);
+		
+		http.csrf(csrf -> csrf.disable());
+		
 		return http.build();
 	}
 	

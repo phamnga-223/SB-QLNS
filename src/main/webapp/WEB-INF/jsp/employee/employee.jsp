@@ -51,7 +51,9 @@
 					   	                   <h1 class="h3 mb-2 text-gray-800">List Employees Information</h1>
 										   <c:choose>
 												<c:when test="${result != null && result != ''}">
-											   		<div>Result: ${result}</div>
+											   		<jsp:include page="../common/notification.jsp">
+														<jsp:param name="result" value="${result}" />
+													</jsp:include>
 											   </c:when>
 										   </c:choose>
 										   <div>
@@ -119,6 +121,11 @@
 																								<i class="fas fa-edit"></i>
 																							</button>
 																						</a>
+																						<form id="salaryForm">
+																							<button id="calculateForm" type="button" value="${ e.getId() }" class="btn btn-success">
+																								<i class="fas fa-edit"></i>
+																							</button>
+																						</form>
 																						<form id="deleteForm">
 																							<input name="id" value="${e.getId()}" hidden/>
 																							<button id="deleteEmployee" type="button" value="${e.getId()}" class="btn btn-danger">
@@ -153,13 +160,15 @@
 		   <a class="scroll-to-top rounded" href="#page-top">
 		       <i class="fas fa-angle-up"></i>
 		   </a>
+		   
+		   <jsp:include page="employeeSalary.jsp" />
 	
-	<!-- Bootstrap core JavaScript-->
-		<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-
-		<!-- Page level plugins -->
+		<!-- Bootstrap core JavaScript-->
 		<script src="${pageContext.request.contextPath}/resources/js/jquery/jquery.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 		
+		<!-- Page level plugins -->		
 		<script src="${pageContext.request.contextPath}/resources/js/datatables/jquery.dataTables.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/datatables/dataTables.bootstrap4.min.js"></script>
 		

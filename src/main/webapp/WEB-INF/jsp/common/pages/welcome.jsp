@@ -29,10 +29,7 @@
 		                       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
 		                           <i class="fa fa-bars"></i>
 		                       </button>
-		                   </form>
-
-		                   <!-- Topbar Navbar -->
-						   <jsp:include page="../top-bar.jsp"/>	                
+		                   </form>                
 						   
 		               </nav>
 					   <!-- End of Topbar -->
@@ -72,6 +69,9 @@
 		   </a>
 	
 	<!-- Bootstrap core JavaScript-->
+	<script src="${pageContext.request.contextPath}/resources/js/jquery/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

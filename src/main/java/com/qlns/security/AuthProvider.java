@@ -21,9 +21,6 @@ import com.qlns.service.AdminService;
 
 @Component
 public class AuthProvider implements AuthenticationProvider {
-
-	@Autowired
-	private AdminService userDetailsService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -43,12 +40,10 @@ public class AuthProvider implements AuthenticationProvider {
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		String username = authentication.getName();
 		String password = authentication.getCredentials().toString();
-		Admin admin = new Admin();
-		admin.setUsername(username);
-		admin.setPassword(password);		
 		
-		String result = adminService.checkAdmin(admin);
-		if (result == "SUCCESS") {	
+		UserDetails admin = adminService.loadUserByUsername(username);
+		String adminPassword = admin.getPassword();
+		if (passwordEncoder.matches(password, adminPassword)) {
 			return authenticateAgainstThirdPartyAndGetAuthentication(username, password);
 		} else {
 			return null;

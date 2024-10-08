@@ -122,11 +122,11 @@
 	   </a>
 	
 	<!-- Bootstrap core JavaScript-->
-	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Page level plugins -->
-	<script src="resources/js/jquery/jquery.min.js"></script>
-	
+	<!-- Page level plugins -->	
 	<script src="resources/js/datatables/jquery.dataTables.min.js"></script>
 	<script src="resources/js/datatables/dataTables.bootstrap4.min.js"></script>
 	
