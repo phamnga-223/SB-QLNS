@@ -101,20 +101,14 @@
 												</div>
 
 												<div class="col-sm-6 mb-3 mb-sm-0">
-													<form:label path="workDay">Work days: </form:label>
-													<form:input path="workDay" class="form-control form-control-user"
-														value="${e.getWorkDay()}" />
-													<form:errors path="workDay" class="invalid-feedback d-block" />
-												</div>
-											</div>
-
-											<div class="form-group row">
-												<div class="col-sm-6 mb-3 mb-sm-0">
 													<label name="department">Department: </label>
 													<input name="department" class="form-control form-control-user"
 														value="${e.getDepartment()}" />
 												</div>
-												<div class="d-flex align-items-end">
+											</div>
+
+											<div class="form-group row">
+												<div class="col-sm-3 mb-3 mb-sm-0">
 													<button id="employeeBtn" class="btn btn-primary btn-block">Update Employee</button>
 												</div>
 											</div>

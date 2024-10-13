@@ -70,7 +70,6 @@
 																	<th>Id</td>
 																	<th>Name</th>
 																	<th>Phone</th>
-																	<th>Work Day</th>
 																	<th>Salary Per Day</th>
 																	<th>Department</th>
 																	<th>Employee Type</th>
@@ -83,7 +82,6 @@
 																<th>Id</td>
 																<th>Name</th>
 																<th>Phone</th>
-																<th>Work Day</th>
 																<th>Salary Per Day</th>
 																<th>Department</th>
 																<th>Employee Type</th>
@@ -104,7 +102,6 @@
 					   																<th scope="row">${e.getId()}</th>
 					   																<td>${e.getName()}</td>
 					   																<td>${e.getPhone()}</td>
-																					<td>${e.getWorkDay()}</td>
 																					<td>${e.getSalaryPerDay()}</td>
 																					<td>${e.getDepartment()}</td>
 																					<td>${e.getEmployeeType()}</td>

@@ -5,6 +5,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.qlns.model.Admin;
@@ -16,6 +18,9 @@ public class AdminService implements UserDetailsService {
 
 	@Autowired
 	AdminRepository adminRepository;
+	
+	@Autowired
+	PasswordEncoder encoder;
 	
 	public String checkAdmin(Admin admin) {
 		String result;
@@ -44,5 +49,33 @@ public class AdminService implements UserDetailsService {
 		}
 		
 		return new CustomUserDetails(admin);
+	}
+	
+	public String register(Admin admin) {
+		String result;
+		
+		try {
+			if (accountExists(admin.getUsername())) {
+				throw new Exception("Account's already exists! - " + admin.getUsername());
+			}
+			
+			admin.setPassword(encoder.encode(admin.getPassword()));
+			admin.setMatchingPassword(admin.getPassword());
+			admin = adminRepository.save(admin);
+			
+			result = "SUCCESS";
+		} catch (Exception ex) {
+			System.err.println("Error!");
+			ex.printStackTrace();
+			result = "UNSUCCESS";
+		}
+		
+		return result;
+	}
+	
+	public boolean accountExists(String username) {
+		Admin admin = adminRepository.getAdmin(username);
+		
+		return (admin != null);
 	}
 }

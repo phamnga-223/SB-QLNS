@@ -1,5 +1,7 @@
 package com.qlns.model;
 
+import com.qlns.config.PasswordMatches;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -8,6 +10,7 @@ import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table
+@PasswordMatches
 public class Admin {
 
 	@Id
@@ -19,6 +22,7 @@ public class Admin {
 	@Column
 	@NotBlank(message = "Password is mandatory")
 	private String password;
+	private String matchingPassword;
 	@Column
 	private String fullName;
 	@Column
@@ -66,5 +70,13 @@ public class Admin {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
+
+	public String getMatchingPassword() {
+		return matchingPassword;
+	}
+
+	public void setMatchingPassword(String matchingPassword) {
+		this.matchingPassword = matchingPassword;
+	}
+
 }

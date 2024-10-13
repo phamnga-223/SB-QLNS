@@ -31,9 +31,6 @@ public class Employee {
 	@Column
 	private String phone;
 	@Column
-	@Min(value = 0, message = "Work Day is greater than 0")
-	private double workDay;
-	@Column
 	@Min(value = 0, message = "Salary Per Day is greater than 0")
 	private int salaryPerDay;
 	@Column
@@ -87,14 +84,6 @@ public class Employee {
 		this.salaryPerDay = salaryPerDay;
 	}
 
-	public double getWorkDay() {
-		return workDay;
-	}
-
-	public void setWorkDay(double workDay) {
-		this.workDay = workDay;
-	}
-
 	public String getEmployeeType() {
 		return employeeType;
 	}
@@ -103,10 +92,6 @@ public class Employee {
 		this.employeeType = employeeType;
 	}
 
-	public long calculateSalary() {
-		return (long) (this.salaryPerDay * workDay);
-	}
-	
 	public int findEmployeeById(List<Employee> list, int id) {
 		if (list == null || list.size() == 0) {
 			System.out.println("List employee is empty!");
@@ -125,6 +110,6 @@ public class Employee {
 
 	public void displayInfo() {
 		System.out.println("Employee Id=" + id + ", name=" + name + ", phone=" + phone
-				+ ", department= " + this.department + ", salaryPerDay=" + salaryPerDay	+ ", workDay=" + workDay);
+				+ ", department= " + this.department + ", salaryPerDay=" + salaryPerDay);
 	}
 }

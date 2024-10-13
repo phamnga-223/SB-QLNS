@@ -77,17 +77,12 @@
 										<form:errors path="phone" cssClass="invalid-feedback d-block" />
 									</div>
 									<div class="col-sm-6 mb-3 mb-sm-0">
-										<form:label path="workDay">Work days: </form:label>
-										<form:input path="workDay" class="form-control form-control-user" />
-										<form:errors path="workDay" cssClass="invalid-feedback d-block" />
-									</div>
-								</div>
-								<div class="form-group row">
-									<div class="col-sm-6 mb-3 mb-sm-0">
 										<form:label path="department">Department: </form:label>
 										<form:input path="department" class="form-control form-control-user" />
 									</div>
-									<div class="d-flex align-items-end">
+								</div>
+								<div class="form-group row">
+									<div class="col-sm-3 mb-3 mb-sm-0">
 										<button id="employeeBtn" class="btn btn-primary btn-block" type="submit">Add Employee</button>
 									</div>
 								</div>

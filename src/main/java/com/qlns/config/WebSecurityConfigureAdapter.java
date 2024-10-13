@@ -17,7 +17,9 @@ public class WebSecurityConfigureAdapter {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {		
 		http.authorizeHttpRequests(authorize -> authorize
-				.requestMatchers("/", "/welcome", "/login", "/checkLogin", "/error", "/resources/**", "/WEB-INF/jsp/**").permitAll()
+				.requestMatchers("/", "/welcome", "/login", "/checkLogin", "/error"
+						, "/resources/**", "/WEB-INF/jsp/**", "/register")
+				.permitAll()
 				.anyRequest().authenticated()
 		);
 		
@@ -32,7 +34,7 @@ public class WebSecurityConfigureAdapter {
 				.invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID")
 		);
-		
+				
 		http.csrf(csrf -> csrf.disable());
 		
 		return http.build();
